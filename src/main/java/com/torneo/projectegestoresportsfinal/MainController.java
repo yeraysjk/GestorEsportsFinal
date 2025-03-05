@@ -21,6 +21,8 @@ public class MainController {
     @FXML private TextField participantTeamField;
     @FXML private TextField participantScoreField;
     @FXML private TextField searchField;
+    @FXML private TextField searchTournamentField;
+    @FXML private TextField searchParticipantField;
 
     private TournamentManager tournamentManager;
     private ObservableList<Tournament> observableTournaments;
@@ -30,23 +32,21 @@ public class MainController {
         tournamentManager = TournamentManager.getInstance();
         observableTournaments = tournamentManager.getAllTournaments();
 
-        // Configurar columnas para la tabla de torneos
+        // Configuración de columnas para la tabla de torneos
         TableColumn<Tournament, String> colName = new TableColumn<>("Nombre");
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         TableColumn<Tournament, LocalDate> colDate = new TableColumn<>("Fecha");
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        // Opcional: otras columnas para game, format y prizes
         TableColumn<Tournament, String> colGame = new TableColumn<>("Juego");
         colGame.setCellValueFactory(new PropertyValueFactory<>("game"));
         TableColumn<Tournament, String> colFormat = new TableColumn<>("Formato");
         colFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
         TableColumn<Tournament, String> colPrizes = new TableColumn<>("Premios");
         colPrizes.setCellValueFactory(new PropertyValueFactory<>("prizes"));
-
         tournamentTable.getColumns().setAll(colName, colDate, colGame, colFormat, colPrizes);
         tournamentTable.setItems(observableTournaments);
 
-        // Configurar columnas para la tabla de participantes
+        // Configuración de columnas para la tabla de participantes
         TableColumn<Participant, String> pName = new TableColumn<>("Nombre");
         pName.setCellValueFactory(new PropertyValueFactory<>("name"));
         TableColumn<Participant, String> pNickname = new TableColumn<>("Nickname");
@@ -94,6 +94,7 @@ public class MainController {
         if(selectedTournament != null) {
             tournamentManager.removeTournament(selectedTournament.getName());
             observableTournaments.setAll(tournamentManager.getAllTournaments());
+            participantTable.setItems(FXCollections.observableArrayList());
         } else {
             showError("Selecciona un torneo para eliminar.");
         }
@@ -150,8 +151,29 @@ public class MainController {
 
     @FXML
     private void search() {
-        // Función de búsqueda (puedes implementarla según tus criterios)
-        showError("Función de búsqueda no implementada.");
+        String query = searchField.getText().toLowerCase();
+        if(query.isEmpty()){
+            observableTournaments.setAll(tournamentManager.getAllTournaments());
+            participantTable.setItems(FXCollections.observableArrayList());
+            return;
+        }
+        ObservableList<Tournament> filtered = FXCollections.observableArrayList();
+        for(Tournament t : tournamentManager.getAllTournaments()){
+            boolean matchTournament = t.getName().toLowerCase().contains(query);
+            boolean matchParticipant = t.getParticipants().stream().anyMatch(p ->
+                    p.getName().toLowerCase().contains(query) ||
+                            p.getNickname().toLowerCase().contains(query));
+            if(matchTournament || matchParticipant){
+                filtered.add(t);
+            }
+        }
+        observableTournaments.setAll(filtered);
+        // Si hay un único torneo en el resultado, se selecciona para mostrar sus participantes
+        if(filtered.size() == 1) {
+            tournamentTable.getSelectionModel().select(filtered.get(0));
+        } else {
+            participantTable.setItems(FXCollections.observableArrayList());
+        }
     }
 
     @FXML
@@ -186,5 +208,37 @@ public class MainController {
         participantNicknameField.clear();
         participantTeamField.clear();
         participantScoreField.clear();
+    }
+
+    // Función de búsqueda para los torneos
+    @FXML
+    public void searchTournament() {
+        String query = searchTournamentField.getText().toLowerCase();
+        ObservableList<Tournament> filteredTournaments = FXCollections.observableArrayList();
+
+        for (Tournament tournament : tournamentManager.getAllTournaments()) {
+            if (tournament.getName().toLowerCase().contains(query)) {
+                filteredTournaments.add(tournament);
+            }
+        }
+
+        tournamentTable.setItems(filteredTournaments);
+    }
+
+    // Función de búsqueda para los participantes
+    @FXML
+    public void searchParticipant() {
+        String query = searchParticipantField.getText().toLowerCase();
+        ObservableList<Participant> filteredParticipants = FXCollections.observableArrayList();
+
+        for (Tournament tournament : tournamentManager.getAllTournaments()) {
+            for (Participant participant : tournament.getParticipants()) {
+                if (participant.getName().toLowerCase().contains(query)) {
+                    filteredParticipants.add(participant);
+                }
+            }
+        }
+
+        participantTable.setItems(filteredParticipants);
     }
 }

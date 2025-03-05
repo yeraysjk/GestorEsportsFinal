@@ -15,6 +15,8 @@ public class MainApp extends Application {
         stage.setTitle("Gestión de Torneos eSports");
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+
     }
 
     public static void main(String[] args) {

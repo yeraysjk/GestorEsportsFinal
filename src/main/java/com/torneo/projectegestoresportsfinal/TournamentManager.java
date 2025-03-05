@@ -18,8 +18,6 @@ public class TournamentManager {
         globalWaitingList = new LinkedList<>();
         undoStack = new Stack<>();
         gson = new GSON();
-
-        // Cargar torneos desde el archivo JSON al iniciar
         loadTournamentsFromJson();
     }
 
@@ -55,9 +53,9 @@ public class TournamentManager {
 
     public void loadTournamentsFromJson() {
         try {
-            Map<String, Tournament> loadedTournaments = gson.retornaFitxerJsonAMap(JSON_FILE_PATH);
-            if(loadedTournaments != null) {
-                tournaments.putAll(loadedTournaments);
+            Map<String, Tournament> loaded = gson.retornaFitxerJsonAMap(JSON_FILE_PATH);
+            if(loaded != null) {
+                tournaments.putAll(loaded);
             }
         } catch(IOException e) {
             System.out.println("No se pudo cargar el archivo JSON o está vacío.");

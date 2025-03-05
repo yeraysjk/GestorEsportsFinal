@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.torneo.projectegestoresportsfinal.MainController">
     <top>
         <VBox>
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <spacing>5</spacing>
-            <Label text="Crear Torneo" style="-fx-font-size: 18px;"/>
+            <spacing>10</spacing>
+            <HBox spacing="10">
+                <!-- Buscar torneo -->
+                <TextField fx:id="searchTournamentField" promptText="Cercar per nom de torneig" prefWidth="200"/>
+                <Button text="Cercar Torneig" onAction="#searchTournament"/>
+            </HBox>
+            <Label text="Crear Torneig" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
             <HBox spacing="5">
-                <TextField fx:id="tournamentNameField" promptText="Nombre"/>
-                <DatePicker fx:id="tournamentDatePicker" promptText="Fecha"/>
-                <TextField fx:id="gameField" promptText="Juego"/>
-                <TextField fx:id="formatField" promptText="Formato"/>
-                <TextField fx:id="prizesField" promptText="Premios"/>
-                <Button text="Agregar" onAction="#addTournament"/>
+                <TextField fx:id="tournamentNameField" promptText="Nom"/>
+                <DatePicker fx:id="tournamentDatePicker" promptText="Data"/>
+                <TextField fx:id="gameField" promptText="Joc"/>
+                <TextField fx:id="formatField" promptText="Format"/>
+                <TextField fx:id="prizesField" promptText="Premis"/>
+                <Button text="Afegir" onAction="#addTournament"/>
+                <!-- Botón de Eliminar Torneig al lado del botón de Crear Torneig -->
+                <Button text="Eliminar Torneig" onAction="#deleteTournament" style="-fx-background-color: red;"/>
             </HBox>
         </VBox>
     </top>
@@ -28,31 +34,27 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <spacing>5</spacing>
-                    <Label text="Lista de Torneos" style="-fx-font-size: 16px;"/>
+                    <spacing>10</spacing>
+                    <Label text="Llista de Tornejos" style="-fx-font-size: 16px;"/>
                     <TableView fx:id="tournamentTable" prefHeight="150">
-                        <!-- Las columnas se pueden agregar programáticamente -->
+                        <!-- Columnas de la tabla de torneos -->
                     </TableView>
-                    <HBox spacing="5">
-                        <Button text="Eliminar Torneo" onAction="#deleteTournament"/>
-                    </HBox>
                 </VBox>
                 <VBox>
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <spacing>5</spacing>
-                    <Label text="Participantes" style="-fx-font-size: 16px;"/>
+                    <spacing>10</spacing>
+                    <Label text="Participants" style="-fx-font-size: 16px;"/>
                     <TableView fx:id="participantTable" prefHeight="150">
-                        <!-- Las columnas se pueden agregar programáticamente -->
                     </TableView>
                     <HBox spacing="5">
-                        <TextField fx:id="participantNameField" promptText="Nombre"/>
+                        <TextField fx:id="participantNameField" promptText="Nom"/>
                         <TextField fx:id="participantNicknameField" promptText="Nickname"/>
-                        <TextField fx:id="participantTeamField" promptText="Equipo"/>
-                        <TextField fx:id="participantScoreField" promptText="Puntuación"/>
-                        <Button text="Agregar Participante" onAction="#addParticipant"/>
-                        <Button text="Eliminar Participante" onAction="#deleteParticipant"/>
+                        <TextField fx:id="participantTeamField" promptText="Equip"/>
+                        <TextField fx:id="participantScoreField" promptText="Puntuació"/>
+                        <Button text="Afegir Participant" onAction="#addParticipant"/>
+                        <Button text="Eliminar Participant" onAction="#deleteParticipant" style="-fx-background-color: red;"/>
                         <Button text="Ordenar" onAction="#sortParticipants"/>
                     </HBox>
                 </VBox>
@@ -60,13 +62,14 @@
         </SplitPane>
     </center>
     <bottom>
-        <HBox spacing="5">
+        <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <alignment>CENTER</alignment>
-            <TextField fx:id="searchField" promptText="Buscar por nombre de torneo o participante"/>
-            <Button text="Buscar" onAction="#search"/>
+            <!-- Buscar participante -->
+            <TextField fx:id="searchParticipantField" promptText="Cercar per nom de participant" prefWidth="200"/>
+            <Button text="Cercar Participant" onAction="#searchParticipant"/>
             <Button text="Undo" onAction="#undoAction"/>
         </HBox>
     </bottom>

@@ -25,7 +25,6 @@ public class Tournament {
         this.participants = new ArrayList<>();
     }
 
-    // Getters y setters
     public String getName() {
         return name;
     }

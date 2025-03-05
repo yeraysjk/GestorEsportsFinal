@@ -1,8 +1,31 @@
 .root {
-    -fx-font-family: Arial;
-    -fx-padding: 10;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f4f4f4;
 }
+
 .button {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
+    -fx-padding: 8 15 8 15;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+}
+
+.label {
+    -fx-text-fill: #333;
+}
+
+.text-field, .date-picker {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
