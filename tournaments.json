@@ -1,0 +1,17 @@
+{
+  "TorneigF5": {
+    "name": "TorneigF5",
+    "date": "2025-02-24",
+    "game": "Futbol",
+    "format": "443",
+    "prizes": "Si",
+    "participants": [
+      {
+        "name": "Yeray",
+        "nickname": "Yeraysjk",
+        "team": "Blanca",
+        "score": 3
+      }
+    ]
+  }
+}

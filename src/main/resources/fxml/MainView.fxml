@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.torneo.projectegestoresportsfinal.MainController">
+    <top>
+        <VBox>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <spacing>5</spacing>
+            <Label text="Crear Torneo" style="-fx-font-size: 18px;"/>
+            <HBox spacing="5">
+                <TextField fx:id="tournamentNameField" promptText="Nombre"/>
+                <DatePicker fx:id="tournamentDatePicker" promptText="Fecha"/>
+                <TextField fx:id="gameField" promptText="Juego"/>
+                <TextField fx:id="formatField" promptText="Formato"/>
+                <TextField fx:id="prizesField" promptText="Premios"/>
+                <Button text="Agregar" onAction="#addTournament"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane orientation="VERTICAL">
+            <items>
+                <VBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <spacing>5</spacing>
+                    <Label text="Lista de Torneos" style="-fx-font-size: 16px;"/>
+                    <TableView fx:id="tournamentTable" prefHeight="150">
+                        <!-- Las columnas se pueden agregar programáticamente -->
+                    </TableView>
+                    <HBox spacing="5">
+                        <Button text="Eliminar Torneo" onAction="#deleteTournament"/>
+                    </HBox>
+                </VBox>
+                <VBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <spacing>5</spacing>
+                    <Label text="Participantes" style="-fx-font-size: 16px;"/>
+                    <TableView fx:id="participantTable" prefHeight="150">
+                        <!-- Las columnas se pueden agregar programáticamente -->
+                    </TableView>
+                    <HBox spacing="5">
+                        <TextField fx:id="participantNameField" promptText="Nombre"/>
+                        <TextField fx:id="participantNicknameField" promptText="Nickname"/>
+                        <TextField fx:id="participantTeamField" promptText="Equipo"/>
+                        <TextField fx:id="participantScoreField" promptText="Puntuación"/>
+                        <Button text="Agregar Participante" onAction="#addParticipant"/>
+                        <Button text="Eliminar Participante" onAction="#deleteParticipant"/>
+                        <Button text="Ordenar" onAction="#sortParticipants"/>
+                    </HBox>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+    <bottom>
+        <HBox spacing="5">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <alignment>CENTER</alignment>
+            <TextField fx:id="searchField" promptText="Buscar por nombre de torneo o participante"/>
+            <Button text="Buscar" onAction="#search"/>
+            <Button text="Undo" onAction="#undoAction"/>
+        </HBox>
+    </bottom>
+</BorderPane>
