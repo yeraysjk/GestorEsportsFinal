@@ -43,9 +43,6 @@ public class TournamentManager {
         saveTournamentsToJson();
     }
 
-    public Tournament getTournament(String name) {
-        return tournaments.get(name);
-    }
 
     public ObservableList<Tournament> getAllTournaments() {
         return FXCollections.observableArrayList(tournaments.values());

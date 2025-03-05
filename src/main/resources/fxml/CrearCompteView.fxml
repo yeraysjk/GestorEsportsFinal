@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.torneo.projectegestoresportsfinal.CrearCompteController">
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Crear Compte Nou" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TextField fx:id="newUsernameField" promptText="Nom d'usuari" prefWidth="250"/>
+
+            <PasswordField fx:id="newPasswordField" promptText="Contrasenya" prefWidth="250"/>
+
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirma la Contrasenya" prefWidth="250"/>
+
+            <Button text="Crear Compte" onAction="#handleCreateAccount" prefWidth="250"/>
+
+            <!-- Missatge d'error -->
+            <Label fx:id="errorMessage" textFill="red" visible="false"/>
+
+            <!-- Botó per tornar enrere -->
+            <Button text="Tornar" onAction="#handleBack" prefWidth="250" style="-fx-background-color: lightgrey;"/>
+        </VBox>
+    </center>
+</BorderPane>

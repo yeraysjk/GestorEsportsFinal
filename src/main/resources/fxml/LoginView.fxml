@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
-       xmlns:fx="http://javafx.com/fxml" fx:controller="com.torneo.projectegestoresportsfinal.LoginController">
-    <Label text="Login" style="-fx-font-size: 24px;"/>
-    <TextField fx:id="usernameField" promptText="Usuari"/>
-    <PasswordField fx:id="passwordField" promptText="Contrasenya"/>
-    <Button text="Iniciar sessió" onAction="#handleLogin"/>
-</VBox>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.torneo.projectegestoresportsfinal.LoginController">
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Inicia Sessió" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <!-- Camp d'usuari -->
+            <TextField fx:id="usernameField" promptText="Nom d'usuari" prefWidth="250"/>
+
+            <!-- Camp de contrasenya -->
+            <PasswordField fx:id="passwordField" promptText="Contrasenya" prefWidth="250"/>
+
+            <Button text="Iniciar Sessió" onAction="#handleLogin" prefWidth="250"/>
+
+            <!-- Botó per crear un nou usuari -->
+            <Button text="Crear Compte" onAction="#handleCreateAccount" prefWidth="250" style="-fx-background-color: lightblue;"/>
+
+            <!-- Missatge d'error -->
+            <Label fx:id="errorMessage" textFill="red" visible="false"/>
+        </VBox>
+    </center>
+</BorderPane>
