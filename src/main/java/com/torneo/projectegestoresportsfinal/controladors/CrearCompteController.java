@@ -1,4 +1,4 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.controladors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

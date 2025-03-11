@@ -1,1 +1,17 @@
-{}
+{
+  "Figuera": {
+    "name": "Figuera",
+    "date": "2025-03-14",
+    "game": "Tennis",
+    "format": "Lliga",
+    "prizes": "No",
+    "participants": [
+      {
+        "name": "Pere",
+        "nickname": "Coll",
+        "team": "Alaves",
+        "score": 10
+      }
+    ]
+  }
+}

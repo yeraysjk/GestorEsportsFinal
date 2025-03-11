@@ -1,4 +1,4 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.controladors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,8 +30,8 @@ public class LoginController {
     public LoginController() {
         // Aquí añadimos usuarios con contraseñas encriptadas (ejemplo de contraseñas)
         try {
-            usersDatabase.put("admin", PasswordUtils.hashPassword("password123")); // Usuario admin con contraseña encriptada
-            usersDatabase.put("user1", PasswordUtils.hashPassword("userpassword")); // Usuario user1 con contraseña encriptada
+            usersDatabase.put("admin", PasswordUtils.hashPassword("admin")); // Usuario admin con contraseña encriptada
+         
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

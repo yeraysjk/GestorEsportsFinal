@@ -1,4 +1,4 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.controladors;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

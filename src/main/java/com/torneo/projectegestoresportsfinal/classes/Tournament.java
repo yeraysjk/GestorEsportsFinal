@@ -1,4 +1,4 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.classes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

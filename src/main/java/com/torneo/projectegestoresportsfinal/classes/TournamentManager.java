@@ -1,7 +1,9 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.classes;
 
 import java.io.IOException;
 import java.util.*;
+
+import com.torneo.projectegestoresportsfinal.libs.GSON;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

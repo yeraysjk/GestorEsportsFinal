@@ -1,4 +1,4 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.libs;
 
 import com.google.gson.*;
 import java.lang.reflect.Type;

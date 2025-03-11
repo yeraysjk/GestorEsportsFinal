@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.torneo.projectegestoresportsfinal.LoginController">
+            fx:controller="com.torneo.projectegestoresportsfinal.controladors.LoginController">
     <center>
         <VBox spacing="20" alignment="CENTER">
             <padding>

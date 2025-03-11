@@ -1,5 +1,8 @@
-package com.torneo.projectegestoresportsfinal;
+package com.torneo.projectegestoresportsfinal.controladors;
 
+import com.torneo.projectegestoresportsfinal.classes.Participant;
+import com.torneo.projectegestoresportsfinal.classes.Tournament;
+import com.torneo.projectegestoresportsfinal.classes.TournamentManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
