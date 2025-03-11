@@ -31,7 +31,7 @@ public class LoginController {
         // Aquí añadimos usuarios con contraseñas encriptadas (ejemplo de contraseñas)
         try {
             usersDatabase.put("admin", PasswordUtils.hashPassword("admin")); // Usuario admin con contraseña encriptada
-         
+
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class LoginController {
 
                 // Crear una nueva ventana (Stage) para la vista MainView
                 Stage stage = new Stage();
-                stage.setTitle("Vista Principal");
+                stage.setTitle("Gestor d'Esports");
                 stage.setScene(new Scene(root));
 
                 // Mostrar la ventana

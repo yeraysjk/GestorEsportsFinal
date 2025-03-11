@@ -11,6 +11,33 @@
         "nickname": "Coll",
         "team": "Alaves",
         "score": 10
+      },
+      {
+        "name": "Jaume",
+        "nickname": "Coll",
+        "team": "Alaves",
+        "score": 10
+      }
+    ]
+  },
+  "FutbolHalloween": {
+    "name": "FutbolHalloween",
+    "date": "2025-03-16",
+    "game": "Futbol",
+    "format": "Torneig",
+    "prizes": "Si",
+    "participants": [
+      {
+        "name": "Yeray",
+        "nickname": "Ray",
+        "team": "Barça",
+        "score": 20
+      },
+      {
+        "name": "Eric",
+        "nickname": "eric",
+        "team": "Madrid",
+        "score": 10
       }
     ]
   }
