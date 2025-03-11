@@ -54,6 +54,7 @@
                         <TextField fx:id="participantTeamField" promptText="Equip"/>
                         <TextField fx:id="participantScoreField" promptText="Puntuació"/>
                         <Button text="Afegir Participant" onAction="#addParticipant"/>
+                        <Button text="Modificar Participant" onAction="#modifyParticipant" style="-fx-background-color: #FFA500; -fx-text-fill: white; -fx-font-weight: bold;"/>
                         <Button text="Eliminar Participant" onAction="#deleteParticipant" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;"/>
                         <Button text="Ordenar" onAction="#sortParticipants"/>
                     </HBox>
@@ -70,7 +71,7 @@
                 <!-- Buscar participante alineado correctamente a la izquierda -->
                 <TextField fx:id="searchParticipantField" promptText="Cercar per nom de participant" prefWidth="250"/>
                 <Button text="Cercar Participant" onAction="#searchParticipant"/>
-                <Button text="Undo" onAction="#undoAction"/>
+                <Button text="Desfer Acció" onAction="#undoAction"/>
             </HBox>
         </VBox>
     </bottom>

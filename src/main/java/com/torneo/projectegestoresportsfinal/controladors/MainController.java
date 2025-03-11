@@ -23,7 +23,7 @@ public class MainController {
     @FXML private TextField participantNicknameField;
     @FXML private TextField participantTeamField;
     @FXML private TextField participantScoreField;
-    @FXML private TextField searchField;
+
     @FXML private TextField searchTournamentField;
     @FXML private TextField searchParticipantField;
 
@@ -66,6 +66,13 @@ public class MainController {
                 participantTable.setItems(FXCollections.observableArrayList(newSelection.getParticipants()));
             } else {
                 participantTable.setItems(FXCollections.observableArrayList());
+            }
+        });
+
+        // Añadir listener para cargar datos del participante al seleccionarlo
+        participantTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null) {
+                loadParticipantData();
             }
         });
     }
@@ -153,33 +160,6 @@ public class MainController {
     }
 
     @FXML
-    private void search() {
-        String query = searchField.getText().toLowerCase();
-        if(query.isEmpty()){
-            observableTournaments.setAll(tournamentManager.getAllTournaments());
-            participantTable.setItems(FXCollections.observableArrayList());
-            return;
-        }
-        ObservableList<Tournament> filtered = FXCollections.observableArrayList();
-        for(Tournament t : tournamentManager.getAllTournaments()){
-            boolean matchTournament = t.getName().toLowerCase().contains(query);
-            boolean matchParticipant = t.getParticipants().stream().anyMatch(p ->
-                    p.getName().toLowerCase().contains(query) ||
-                            p.getNickname().toLowerCase().contains(query));
-            if(matchTournament || matchParticipant){
-                filtered.add(t);
-            }
-        }
-        observableTournaments.setAll(filtered);
-        // Si hay un único torneo en el resultado, se selecciona para mostrar sus participantes
-        if(filtered.size() == 1) {
-            tournamentTable.getSelectionModel().select(filtered.get(0));
-        } else {
-            participantTable.setItems(FXCollections.observableArrayList());
-        }
-    }
-
-    @FXML
     private void undoAction() {
         String action = tournamentManager.undoLastAction();
         if(action != null) {
@@ -243,5 +223,55 @@ public class MainController {
         }
 
         participantTable.setItems(filteredParticipants);
+    }
+
+    @FXML
+    private void modifyParticipant() {
+        try {
+            Tournament selectedTournament = tournamentTable.getSelectionModel().getSelectedItem();
+            Participant selectedParticipant = participantTable.getSelectionModel().getSelectedItem();
+            
+            if(selectedTournament == null || selectedParticipant == null) {
+                showError("Selecciona un torneo y un participante para modificar.");
+                return;
+            }
+
+            String name = participantNameField.getText();
+            String nickname = participantNicknameField.getText();
+            String team = participantTeamField.getText();
+            int score = Integer.parseInt(participantScoreField.getText());
+
+            if(name.isEmpty() || nickname.isEmpty() || team.isEmpty()) {
+                showError("Todos los campos del participante son obligatorios.");
+                return;
+            }
+
+            // Crear nuevo participante con los datos actualizados
+            Participant updatedParticipant = new Participant(name, nickname, team, score);
+            
+            // Actualizar el participante en el torneo
+            tournamentManager.removeParticipant(selectedTournament.getName(), selectedParticipant);
+            tournamentManager.addParticipant(selectedTournament.getName(), updatedParticipant);
+            
+            // Actualizar la tabla
+            participantTable.setItems(FXCollections.observableArrayList(selectedTournament.getParticipants()));
+            clearParticipantFields();
+            
+        } catch(NumberFormatException e) {
+            showError("La puntuación debe ser un número.");
+        } catch(Exception e) {
+            showError("Error al modificar participante: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void loadParticipantData() {
+        Participant selectedParticipant = participantTable.getSelectionModel().getSelectedItem();
+        if(selectedParticipant != null) {
+            participantNameField.setText(selectedParticipant.getName());
+            participantNicknameField.setText(selectedParticipant.getNickname());
+            participantTeamField.setText(selectedParticipant.getTeam());
+            participantScoreField.setText(String.valueOf(selectedParticipant.getScore()));
+        }
     }
 }
